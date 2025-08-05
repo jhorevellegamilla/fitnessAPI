@@ -15,15 +15,22 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-  origin: [
-    'http://localhost:5173',
-    'https://s85-app-building-fs.vercel.app',
-    'https://s85-app-building-qflyrx9kg-jhorevelles-projects.vercel.app',
-    'https://s85-app-building-qflyrx9kg-jo-projects.vercel.app'
-  ],
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    if (
+      origin.includes("localhost") ||
+      origin.endsWith(".vercel.app")
+    ) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
-  optionsSuccessStatus: 200
+  optionsSuccessStatus: 200,
 };
+
 
 
 app.use(cors(corsOptions));
