@@ -17,7 +17,9 @@ const app = express();
 const corsOptions = {
   origin: [
     'http://localhost:5173',
-    'https://s85-app-building-fs.vercel.app'
+    'https://s85-app-building-fs.vercel.app',
+    'https://s85-app-building-qflyrx9kg-jhorevelles-projects.vercel.app',
+    'https://s85-app-building-qflyrx9kg-jo-projects.vercel.app'
   ],
   credentials: true,
   optionsSuccessStatus: 200
